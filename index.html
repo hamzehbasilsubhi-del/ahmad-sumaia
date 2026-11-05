@@ -45,13 +45,23 @@
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            letter-spacing: normal !important;
+        }
+
+        p, h1, h2, h3, h4, h5, h6, span {
+            letter-spacing: normal !important;
         }
 
         .font-serif-custom {
             font-family: 'Amiri', serif;
+            letter-spacing: normal !important;
         }
         .font-script {
             font-family: 'Reem Kufi', sans-serif;
+            letter-spacing: normal !important;
         }
         
         .unified-bg {
@@ -171,14 +181,14 @@
                 <img src="assets/basmala.png" alt="بسم الله الرحمن الرحيم" class="w-48 md:w-56 h-auto object-contain drop-shadow-md opacity-95" loading="eager">
                 <p class="font-serif-custom text-base md:text-lg text-black font-semibold leading-relaxed drop-shadow-sm px-1 text-center">
                     ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾
-                    <span class="block text-xs text-deepNavy font-medium mt-1.5 tracking-widest">[الروم: ٢١]</span>
+                    <span class="block text-xs text-deepNavy font-medium mt-1.5 tracking-normal">[الروم: ٢١]</span>
                 </p>
             </div>
 
             <!-- زر اسحب لأسفل بحجم أصغر -->
             <div class="relative z-15 mb-2 flex flex-col items-center animate-bounce">
                 <a href="#welcome" aria-label="التمرير إلى قسم الترحيب" class="text-deepNavy hover:text-softGrey transition flex flex-col items-center">
-                    <span class="font-script text-lg md:text-xl text-deepNavy tracking-wider mb-0.5 drop-shadow-md">اسحب لأسفل</span>
+                    <span class="font-script text-lg md:text-xl text-deepNavy mb-0.5 drop-shadow-md">اسحب لأسفل</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
@@ -205,7 +215,7 @@
 
                 <!-- نص بقلوب يملؤها الفرح وتتشرف -->
                 <div class="space-y-3">
-                    <h3 class="font-serif-custom text-lg md:text-xl font-bold tracking-wide text-deepNavy">بقلوب يملؤها الفرح</h3>
+                    <h3 class="font-serif-custom text-lg md:text-xl font-bold text-deepNavy">بقلوب يملؤها الفرح</h3>
                     <p class="font-serif-custom text-base text-deepNavy font-medium">تتشرف</p>
                     
                     <!-- أسماء العائلات في عمودين متوازيين -->
@@ -236,7 +246,7 @@
                 <div class="space-y-3 pt-1">
                     <p class="font-serif-custom text-base text-deepNavy font-semibold">وذلك بمشيئة الله</p>
                     <p class="font-serif-custom text-lg text-deepNavy font-bold">يوم الأربعاء</p>
-                    <p class="font-serif-custom text-xl tracking-widest text-deepNavy font-bold">18.11.2026</p>
+                    <p class="font-serif-custom text-xl text-deepNavy font-bold">18.11.2026</p>
                     
                     <div class="pt-4">
                         <p class="font-serif-custom text-base md:text-lg italic text-deepNavy leading-relaxed px-2">
@@ -251,7 +261,7 @@
         <!-- القسم الثالث: جدول الحفل (SCHEDULE) -->
         <section id="scheduleSection" class="py-16 px-4 relative schedule-bg overflow-hidden">
             <div class="text-center mb-10">
-                <h2 class="font-serif-custom text-2xl md:text-3xl tracking-wider text-deepNavy font-normal">برنامج الحفل</h2>
+                <h2 class="font-serif-custom text-2xl md:text-3xl text-deepNavy font-normal">برنامج الحفل</h2>
                 <div class="flex justify-center pt-3">
                     <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
                 </div>
@@ -267,7 +277,7 @@
 
                 <div class="relative z-20 flex items-center justify-between mb-16 flex-row-reverse">
                     <div class="w-5/12 text-center pr-2 relative flex items-center justify-center">
-                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">٧:٣٠ مساءً</span>
+                        <span class="block text-[11px] font-semibold text-softGrey uppercase mb-1">٧:٣٠ مساءً</span>
                         <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">استقبال الضيوف</h4>
                         <p class="text-[11px] text-softGrey italic">الترحيب والجلوس</p>
                     </div>
@@ -279,7 +289,7 @@
 
                 <div class="relative z-20 flex items-center justify-between mb-16">
                     <div class="w-5/12 text-right pr-2">
-                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">٨:٠٠ مساءً</span>
+                        <span class="block text-[11px] font-semibold text-softGrey uppercase mb-1">٨:٠٠ مساءً</span>
                         <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">الزفة</h4>
                         <p class="text-[11px] text-softGrey italic">الزفة الاحتفالية الكبرى</p>
                     </div>
@@ -291,7 +301,7 @@
 
                 <div class="relative z-20 flex items-center justify-between mb-16 flex-row-reverse">
                     <div class="w-5/12 text-center pr-2 relative flex items-center justify-center">
-                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">٩:٣٠ مساءً</span>
+                        <span class="block text-[11px] font-semibold text-softGrey uppercase mb-1">٩:٣٠ مساءً</span>
                         <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">العشاء</h4>
                         <p class="text-[11px] text-softGrey italic">مأدبة الاحتفال</p>
                     </div>
@@ -303,7 +313,7 @@
 
                 <div class="relative z-20 flex items-center justify-between">
                     <div class="w-5/12 text-right pr-2">
-                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">١٠:٣٠ مساءً</span>
+                        <span class="block text-[11px] font-semibold text-softGrey uppercase mb-1">١٠:٣٠ مساءً</span>
                         <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">الدخلة الثانية</h4>
                         <p class="text-[11px] text-softGrey italic">فقرة الحفل والاحتفال</p>
                     </div>
@@ -317,7 +327,7 @@
 
         <!-- القسم الرابع: العد التنازلي (COUNTDOWN) -->
         <section class="py-16 px-6 text-center unified-bg">
-            <h3 class="font-serif-custom text-2xl tracking-wider text-deepNavy mb-2">نعد الأيام للقاء الأبد</h3>
+            <h3 class="font-serif-custom text-2xl text-deepNavy mb-2">نعد الأيام للقاء الأبد</h3>
             <div class="flex justify-center mb-8">
                 <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
             </div>
@@ -325,22 +335,22 @@
             <div id="countdown" class="flex justify-center items-center max-w-sm mx-auto text-deepNavy" dir="ltr">
                 <div class="flex-1 text-center px-1">
                     <span id="seconds" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
-                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">ثواني</span>
+                    <span class="block text-[10px] text-softGrey mt-1">ثواني</span>
                 </div>
                 <div class="w-[1px] h-10 bg-silverBlue/70"></div>
                 <div class="flex-1 text-center px-1">
                     <span id="minutes" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
-                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">دقائق</span>
+                    <span class="block text-[10px] text-softGrey mt-1">دقائق</span>
                 </div>
                 <div class="w-[1px] h-10 bg-silverBlue/70"></div>
                 <div class="flex-1 text-center px-1">
                     <span id="hours" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
-                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">ساعات</span>
+                    <span class="block text-[10px] text-softGrey mt-1">ساعات</span>
                 </div>
                 <div class="w-[1px] h-10 bg-silverBlue/70"></div>
                 <div class="flex-1 text-center px-1">
                     <span id="days" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
-                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">أيام</span>
+                    <span class="block text-[10px] text-softGrey mt-1">أيام</span>
                 </div>
             </div>
         </section>
@@ -348,7 +358,7 @@
         <!-- القسم الخامس: التفاصيل والخريطة (DETAILS & MAP) -->
         <section class="relative py-16 text-center unified-bg overflow-hidden">
             <div class="max-w-xs mx-auto space-y-6 px-6">
-                <h3 class="font-serif-custom text-2xl tracking-wider text-deepNavy">تفاصيل حفل الزفاف</h3>
+                <h3 class="font-serif-custom text-2xl text-deepNavy">تفاصيل حفل الزفاف</h3>
                 <div class="flex justify-center">
                     <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
                 </div>
@@ -361,18 +371,18 @@
 
                 <div class="space-y-1">
                     <p class="font-serif-custom text-base text-deepNavy font-medium">قاعة محمد بن زايد</p>
-                    <p class="text-xs text-softGrey tracking-widest">قاعة الاحتفالات</p>
+                    <p class="text-xs text-softGrey">قاعة الاحتفالات</p>
                 </div>
 
                 <div onclick="openLocationMap()" class="rounded-xl overflow-hidden shadow-sm border border-silverBlue/50 h-36 relative bg-mist/20 cursor-pointer group transition hover:shadow-md">
                     <iframe title="خريطة موقع الحفل" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.15858273614!2d56.335!3d25.128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef4f981084bbf01%3A0x86bb7e8becc1ea04!2sThe%20Address%20Beach%20Resort%20Fujairah!5e0!3m2!1sen!2sae!4v1650000000000!5m2!1sen!2sae" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="opacity-90 pointer-events-none"></iframe>
                     <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                        <span class="bg-deepNavy/80 text-white text-[10px] tracking-widest px-3 py-1.5 rounded-full backdrop-blur-sm">اضغط لفتح الخريطة</span>
+                        <span class="bg-deepNavy/80 text-white text-[10px] px-3 py-1.5 rounded-full backdrop-blur-sm">اضغط لفتح الخريطة</span>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-3">
-                    <button onclick="openLocationMap()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-deepNavy text-white text-xs tracking-widest shadow-sm hover:bg-navyDark transition">
+                    <button onclick="openLocationMap()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-deepNavy text-white text-xs shadow-sm hover:bg-navyDark transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -380,7 +390,7 @@
                         فتح الموقع في خرائط جوجل
                     </button>
 
-                    <button onclick="addToCalendar()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-silverBlue bg-white/80 text-xs tracking-widest text-deepNavy hover:bg-white shadow-sm transition">
+                    <button onclick="addToCalendar()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-silverBlue bg-white/80 text-xs text-deepNavy hover:bg-white shadow-sm transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -392,12 +402,12 @@
 
         <!-- القسم السادس: اللباس الرسمي (DRESS CODE) -->
         <section class="py-16 px-6 text-center unified-bg">
-            <h3 class="font-serif-custom text-2xl md:text-3xl tracking-wider text-deepNavy mb-2">اللباس الرسمي</h3>
+            <h3 class="font-serif-custom text-2xl md:text-3xl text-deepNavy mb-2">اللباس الرسمي</h3>
             <div class="flex justify-center mb-6">
                 <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
             </div>
 
-            <p class="font-serif-custom text-lg md:text-xl text-deepNavy font-medium tracking-wide mb-8">
+            <p class="font-serif-custom text-lg md:text-xl text-deepNavy font-medium mb-8">
                 بدلات رسمية <span class="mx-2 text-silverBlue">|</span> فساتين سهرة
             </p>
 
@@ -412,32 +422,32 @@
 
         <!-- القسم السابع: تأكيد الحضور (RSVP) -->
         <section class="py-16 px-8 text-center unified-bg">
-            <h3 class="font-serif-custom text-2xl tracking-wider text-deepNavy mb-2">هل ستشاركوننا الفرحة؟</h3>
+            <h3 class="font-serif-custom text-2xl text-deepNavy mb-2">هل ستشاركوننا الفرحة؟</h3>
             <div class="flex justify-center mb-6">
                 <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
             </div>
 
-            <p class="text-xs tracking-widest text-softGrey mb-8">نرجو تأكيد الحضور قبل تاريخ ١٠ نوفمبر ٢٠٢٦.</p>
+            <p class="text-xs text-softGrey mb-8">نرجو تأكيد الحضور قبل تاريخ ١٠ نوفمبر ٢٠٢٦.</p>
 
             <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4 max-w-xs mx-auto text-right">
                 <div>
-                    <label for="guestName" class="block text-[10px] tracking-widest text-softGrey mb-1">الاسم الكامل</label>
+                    <label for="guestName" class="block text-[10px] text-softGrey mb-1">الاسم الكامل</label>
                     <input type="text" id="guestName" required class="w-full bg-transparent border-b border-silverBlue py-2 text-sm text-deepNavy focus:outline-none focus:border-deepNavy text-right">
                 </div>
 
                 <!-- خانة تحديد عدد الضيوف -->
                 <div>
-                    <label for="guestCount" class="block text-[10px] tracking-widest text-softGrey mb-1">عدد الضيوف</label>
+                    <label for="guestCount" class="block text-[10px] text-softGrey mb-1">عدد الضيوف</label>
                     <input type="number" id="guestCount" value="1" min="1" max="10" required class="w-full bg-transparent border-b border-silverBlue py-2 text-sm text-deepNavy focus:outline-none focus:border-deepNavy text-right">
                 </div>
 
                 <div class="pt-4 space-y-3">
-                    <button type="button" onclick="setAttendance('Joyfully Accepts')" id="btnAccept" class="w-full py-3 rounded-full border border-silverBlue text-xs tracking-[0.1em] text-deepNavy bg-white/50 hover:bg-mist/30 transition">يسعدني الحضور</button>
-                    <button type="button" onclick="setAttendance('Regretfully Declines')" id="btnDecline" class="w-full py-3 rounded-full border border-silverBlue text-xs tracking-[0.1em] text-deepNavy bg-white/50 hover:bg-mist/30 transition">نعتذر عن عدم الحضور</button>
+                    <button type="button" onclick="setAttendance('Joyfully Accepts')" id="btnAccept" class="w-full py-3 rounded-full border border-silverBlue text-xs text-deepNavy bg-white/50 hover:bg-mist/30 transition">يسعدني الحضور</button>
+                    <button type="button" onclick="setAttendance('Regretfully Declines')" id="btnDecline" class="w-full py-3 rounded-full border border-silverBlue text-xs text-deepNavy bg-white/50 hover:bg-mist/30 transition">نعتذر عن عدم الحضور</button>
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" class="w-full py-3.5 rounded-full bg-deepNavy text-white text-xs tracking-[0.1em] shadow-md hover:bg-navyDark transition">إرسال الرد</button>
+                    <button type="submit" class="w-full py-3.5 rounded-full bg-deepNavy text-white text-xs shadow-md hover:bg-navyDark transition">إرسال الرد</button>
                 </div>
             </form>
             <div id="rsvpSuccess" class="hidden pt-4 text-sm font-serif-custom italic text-deepNavy">
@@ -451,7 +461,7 @@
                 <img src="assets/footer_swan.png" alt="تذييل الصفحة" class="w-full h-auto object-cover block opacity-95" loading="lazy">
                 <div class="absolute bottom-6 left-0 right-0 z-10 px-4 text-center">
                     <h4 class="font-serif-custom text-2xl md:text-3xl italic text-deepNavy drop-shadow-sm mb-1">أحمد & سمية</h4>
-                    <p class="text-[10px] tracking-[0.2em] text-deepNavy/80 drop-shadow-sm font-medium">حكايتنا الأبدية تبدأ من هنا.</p>
+                    <p class="text-[10px] text-deepNavy/80 drop-shadow-sm font-medium">حكايتنا الأبدية تبدأ من هنا.</p>
                 </div>
             </div>
         </section>
