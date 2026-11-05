@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>أحمد وسمية - دعوة زفاف</title>
+    
+    <!-- Open Graph / Social Media Meta Tags لمنظومة المعاينة الاحترافية على واتساب -->
+    <meta property="og:title" content="أحمد وسمية - دعوة زفاف">
+    <meta property="og:description" content="يسعدنا حضوركم ومشاركتنا فرحة زفافنا. اضغط لفتح بطاقة الدعوة.">
+    <meta property="og:image" content="https://ahmed-esraa.rawnaq.pro/assets/envelope_cover.png">
+    <meta property="og:url" content="https://ahmed-esraa.rawnaq.pro">
+    <meta property="og:type" content="website">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo & Amiri & Reem Kufi -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pearl: '#FDFBF7',
+                        mist: '#D4E2EE',
+                        silverBlue: '#A9C2D9',
+                        softGrey: '#8FA1B3',
+                        deepNavy: '#2C3E50',
+                        navyDark: '#1A252F',
+                    },
+                    fontFamily: {
+                        serif: ['"Amiri"', 'serif'],
+                        sans: ['"Cairo"', 'sans-serif'],
+                        script: ['"Reem Kufi"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(180deg, #FDFBF7 0%, #D4E2EE 25%, #FDFBF7 50%, #D4E2EE 75%, #FDFBF7 100%);
+            color: #2C3E50;
+            font-family: 'Cairo', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .font-serif-custom {
+            font-family: 'Amiri', serif;
+        }
+        .font-script {
+            font-family: 'Reem Kufi', sans-serif;
+        }
+        
+        .unified-bg {
+            background: transparent;
+        }
+
+        .welcome-white-bg {
+            background-color: #FFFFFF;
+        }
+
+        .schedule-bg {
+            background-image: linear-gradient(to bottom, #FFFFFF 0%, rgba(212, 227, 238, 0.4) 30%, rgba(212, 227, 238, 0.85) 85%, #d4e3ee 100%), url('assets/schedule_bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-blend-mode: overlay;
+        }
+
+        #introScreen {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #2C3E50;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+            overflow: hidden;
+        }
+
+        #envelopeContainer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2C3E50;
+            z-index: 2;
+            transition: opacity 0.3s ease;
+        }
+
+        #envelopeContainer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #openingVideo {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #2C3E50;
+            z-index: 1;
+        }
+
+        main {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-deepNavy antialiased selection:bg-mist selection:text-deepNavy">
+
+    <!-- شاشة البداية -->
+    <div id="introScreen" onclick="startInvitation()">
+        <div id="envelopeContainer">
+            <img src="assets/envelope_cover.png" alt="ظرف الزفاف" />
+            <div class="absolute bottom-12 z-10 text-center animate-pulse cursor-pointer">
+                <span class="font-script text-2xl md:text-3xl text-white tracking-wide drop-shadow-md">اضغط لفتح الدعوة</span>
+            </div>
+        </div>
+
+        <video id="openingVideo" playsinline muted preload="auto">
+            <source src="assets/envelope_opening.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+    </div>
+
+    <!-- زر التحكم بالصوت -->
+    <div class="fixed top-5 left-5 z-40">
+        <button id="audioToggle" onclick="toggleAudio()" aria-label="تشغيل/إيقاف الصوت" class="w-10 h-10 rounded-full bg-white/85 backdrop-blur-md shadow-sm border border-mist flex items-center justify-center text-deepNavy hover:bg-white transition">
+            <svg id="audioIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            </svg>
+        </button>
+        <audio id="bgAudio" loop preload="auto">
+            <source src="assets/wedding_melody.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- الحاوية الرئيسية -->
+    <main>
+
+        <!-- القسم الأول: الواجهة (HERO) -->
+        <section class="relative h-screen w-full flex flex-col justify-between items-center text-center py-16 px-6 overflow-hidden">
+            <div class="absolute inset-0 w-full h-full z-0 overflow-hidden bg-black">
+                <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-80">
+                    <source src="assets/swan_hero_video.mp4" type="video/mp4">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+                <div class="absolute inset-0 bg-gradient-to-b from-white/20 via-black/10 via-65% to-[#FFFFFF]"></div>
+            </div>
+
+            <!-- البسملة والآية القرآنية في البانر -->
+            <div class="relative z-15 my-auto flex flex-col items-center max-w-[270px] mx-auto space-y-5">
+                <img src="assets/basmala.png" alt="بسم الله الرحمن الرحيم" class="w-48 md:w-56 h-auto object-contain drop-shadow-md opacity-95" loading="eager">
+                <p class="font-serif-custom text-base md:text-lg text-black font-semibold leading-relaxed drop-shadow-sm px-1 text-center">
+                    ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ ﴾
+                    <span class="block text-xs text-deepNavy font-medium mt-1.5 tracking-widest">[الروم: ٢١]</span>
+                </p>
+            </div>
+
+            <!-- زر اسحب لأسفل بحجم أصغر -->
+            <div class="relative z-15 mb-2 flex flex-col items-center animate-bounce">
+                <a href="#welcome" aria-label="التمرير إلى قسم الترحيب" class="text-deepNavy hover:text-softGrey transition flex flex-col items-center">
+                    <span class="font-script text-lg md:text-xl text-deepNavy tracking-wider mb-0.5 drop-shadow-md">اسحب لأسفل</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 drop-shadow-md" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- القسم الثاني: الترحيب (WELCOME) مع خلفية schedule-bg وإزالة الإطار -->
+        <section id="welcome" class="py-16 px-6 text-center relative schedule-bg overflow-hidden">
+            <div class="max-w-sm mx-auto space-y-6">
+                
+                <!-- الأبيات الشعرية -->
+                <p class="font-serif-custom text-base leading-relaxed text-deepNavy italic">
+                    في ليلةٍ خَطّها القَدَر بأجمَل الألوان، تَلتَقِي القُلوبُ لِتُكتَبَ بِدايَةَ فَصْلٍ جَدِيد ملوؤه المَحبّة والأُنس، بِوجورِ مَن نُحبّ
+                </p>
+                <div class="flex justify-center pt-1 pb-1">
+                    <img src="assets/floral_divider.png" alt="فاصل" class="w-32 h-auto object-contain opacity-85">
+                </div>
+                <p class="font-serif-custom text-base leading-relaxed text-deepNavy/85 italic">
+                    حينَ يَتَلَاَقَى الزَّهْرُ وَالنُّور، يُكْتَبُ العُمْرُ أَجْمَلَ فُصولِه في لَيْلَةٍ يَعُمًّهَا الدِّفْءُ وَالأُنْس
+                </p>
+
+                <div class="pt-2 border-t border-silverBlue/30"></div>
+
+                <!-- نص بقلوب يملؤها الفرح وتتشرف -->
+                <div class="space-y-3">
+                    <h3 class="font-serif-custom text-lg md:text-xl font-bold tracking-wide text-deepNavy">بقلوب يملؤها الفرح</h3>
+                    <p class="font-serif-custom text-base text-deepNavy font-medium">تتشرف</p>
+                    
+                    <!-- أسماء العائلات في عمودين متوازيين -->
+                    <div class="grid grid-cols-2 gap-2 pt-2 pb-1 text-center font-serif-custom">
+                        <div class="px-1 border-l border-silverBlue/40">
+                            <span class="block text-sm text-softGrey">عائلة</span>
+                            <span class="block text-base font-bold text-deepNavy leading-tight">السيد راشد عبدالله بانافع</span>
+                        </div>
+                        <div class="px-1">
+                            <span class="block text-sm text-softGrey">عائلة</span>
+                            <span class="block text-base font-bold text-deepNavy leading-tight">السيد عبدالكريم عبدالله بانافع</span>
+                        </div>
+                    </div>
+
+                    <p class="font-serif-custom text-base text-deepNavy/90 pt-2">بدعوتكم لحضور حفل زفاف نجليهما</p>
+                </div>
+
+                <!-- صورة مخطوطة أسماء العروسين (أحمد وسمية) بدلاً من النص -->
+                <div class="py-4 flex justify-center">
+                    <img src="assets/couple_names.png" alt="أحمد وسمية" class="w-56 md:w-64 h-auto object-contain drop-shadow-sm">
+                </div>
+
+                <div class="flex justify-center pt-1">
+                    <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
+                </div>
+
+                <!-- التواريخ والختام (بدون إطار) -->
+                <div class="space-y-3 pt-1">
+                    <p class="font-serif-custom text-base text-deepNavy font-semibold">وذلك بمشيئة الله</p>
+                    <p class="font-serif-custom text-lg text-deepNavy font-bold">يوم الأربعاء</p>
+                    <p class="font-serif-custom text-xl tracking-widest text-deepNavy font-bold">18.11.2026</p>
+                    
+                    <div class="pt-4">
+                        <p class="font-serif-custom text-base md:text-lg italic text-deepNavy leading-relaxed px-2">
+                            حضوركم يكتمل به فرحنا وتكتمل به أجمل أوقاتنا
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- القسم الثالث: جدول الحفل (SCHEDULE) -->
+        <section id="scheduleSection" class="py-16 px-4 relative schedule-bg overflow-hidden">
+            <div class="text-center mb-10">
+                <h2 class="font-serif-custom text-2xl md:text-3xl tracking-wider text-deepNavy font-normal">برنامج الحفل</h2>
+                <div class="flex justify-center pt-3">
+                    <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
+                </div>
+            </div>
+
+            <div class="relative max-w-sm mx-auto">
+                <div class="absolute left-1/2 top-0 bottom-0 -translate-x-1/2 w-20 pointer-events-none z-10">
+                    <svg id="timelineSvg" class="w-full h-full overflow-visible" viewBox="0 0 80 900" fill="none" preserveAspectRatio="none">
+                        <path id="zigzagPath" d="M40 0 C 75 180, 5 360, 40 540 C 75 720, 5 810, 40 900" stroke="#A9C2D9" stroke-width="2" stroke-dasharray="none" opacity="0.85"/>
+                        <image id="movingPearl" href="assets/blue_pearl.png" x="26" y="-14" width="28" height="28" class="transition-all duration-75 drop-shadow-md" />
+                    </svg>
+                </div>
+
+                <div class="relative z-20 flex items-center justify-between mb-16 flex-row-reverse">
+                    <div class="w-5/12 text-center pr-2 relative flex items-center justify-center">
+                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">٧:٣٠ مساءً</span>
+                        <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">استقبال الضيوف</h4>
+                        <p class="text-[11px] text-softGrey italic">الترحيب والجلوس</p>
+                    </div>
+                    <div class="w-2/12 flex justify-center relative"></div>
+                    <div class="w-5/12 text-left pl-2 relative flex items-center justify-center">
+                        <img src="assets/shoe_icon.png" alt="وصول الضيوف" class="w-20 h-auto mx-auto object-contain drop-shadow-sm" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="relative z-20 flex items-center justify-between mb-16">
+                    <div class="w-5/12 text-right pr-2">
+                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">٨:٠٠ مساءً</span>
+                        <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">الزفة</h4>
+                        <p class="text-[11px] text-softGrey italic">الزفة الاحتفالية الكبرى</p>
+                    </div>
+                    <div class="w-2/12 flex justify-center relative"></div>
+                    <div class="w-5/12 text-center pl-2 relative flex items-center justify-center">
+                        <img src="assets/rings_icon.png" alt="الزفة" class="w-18 h-auto mx-auto object-contain drop-shadow-sm" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="relative z-20 flex items-center justify-between mb-16 flex-row-reverse">
+                    <div class="w-5/12 text-center pr-2 relative flex items-center justify-center">
+                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">٩:٣٠ مساءً</span>
+                        <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">العشاء</h4>
+                        <p class="text-[11px] text-softGrey italic">مأدبة الاحتفال</p>
+                    </div>
+                    <div class="w-2/12 flex justify-center relative"></div>
+                    <div class="w-5/12 text-left pl-2 relative flex items-center justify-center">
+                        <img src="assets/champagne_icon.png" alt="العشاء" class="w-18 h-auto mx-auto object-contain drop-shadow-sm" loading="lazy">
+                    </div>
+                </div>
+
+                <div class="relative z-20 flex items-center justify-between">
+                    <div class="w-5/12 text-right pr-2">
+                        <span class="block text-[11px] font-semibold tracking-widest text-softGrey uppercase mb-1">١٠:٣٠ مساءً</span>
+                        <h4 class="font-serif-custom text-lg text-deepNavy font-medium leading-tight mb-1">الدخلة الثانية</h4>
+                        <p class="text-[11px] text-softGrey italic">فقرة الحفل والاحتفال</p>
+                    </div>
+                    <div class="w-2/12 flex justify-center relative"></div>
+                    <div class="w-5/12 text-center pl-2 relative flex items-center justify-center">
+                        <img src="assets/couple_illustration.png" alt="الدخلة الثانية" class="w-20 h-auto mx-auto object-contain drop-shadow-sm" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الرابع: العد التنازلي (COUNTDOWN) -->
+        <section class="py-16 px-6 text-center unified-bg">
+            <h3 class="font-serif-custom text-2xl tracking-wider text-deepNavy mb-2">نعد الأيام للقاء الأبد</h3>
+            <div class="flex justify-center mb-8">
+                <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
+            </div>
+
+            <div id="countdown" class="flex justify-center items-center max-w-sm mx-auto text-deepNavy" dir="ltr">
+                <div class="flex-1 text-center px-1">
+                    <span id="seconds" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
+                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">ثواني</span>
+                </div>
+                <div class="w-[1px] h-10 bg-silverBlue/70"></div>
+                <div class="flex-1 text-center px-1">
+                    <span id="minutes" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
+                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">دقائق</span>
+                </div>
+                <div class="w-[1px] h-10 bg-silverBlue/70"></div>
+                <div class="flex-1 text-center px-1">
+                    <span id="hours" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
+                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">ساعات</span>
+                </div>
+                <div class="w-[1px] h-10 bg-silverBlue/70"></div>
+                <div class="flex-1 text-center px-1">
+                    <span id="days" class="block font-serif-custom text-3xl md:text-4xl font-normal">00</span>
+                    <span class="block text-[10px] tracking-widest text-softGrey mt-1">أيام</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم الخامس: التفاصيل والخريطة (DETAILS & MAP) -->
+        <section class="relative py-16 text-center unified-bg overflow-hidden">
+            <div class="max-w-xs mx-auto space-y-6 px-6">
+                <h3 class="font-serif-custom text-2xl tracking-wider text-deepNavy">تفاصيل حفل الزفاف</h3>
+                <div class="flex justify-center">
+                    <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
+                </div>
+
+                <p class="font-serif-custom text-xl italic text-deepNavy">١٨ نوفمبر ٢٠٢٦ - الساعة 8:00 مساءً</p>
+
+                <div class="my-4">
+                    <img src="assets/venue_illustration.png" alt="صورة توضيحية للقاعة" class="w-full h-auto object-cover drop-shadow-sm" loading="lazy">
+                </div>
+
+                <div class="space-y-1">
+                    <p class="font-serif-custom text-base text-deepNavy font-medium">قاعة محمد بن زايد</p>
+                    <p class="text-xs text-softGrey tracking-widest">قاعة الاحتفالات</p>
+                </div>
+
+                <div onclick="openLocationMap()" class="rounded-xl overflow-hidden shadow-sm border border-silverBlue/50 h-36 relative bg-mist/20 cursor-pointer group transition hover:shadow-md">
+                    <iframe title="خريطة موقع الحفل" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3610.15858273614!2d56.335!3d25.128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef4f981084bbf01%3A0x86bb7e8becc1ea04!2sThe%20Address%20Beach%20Resort%20Fujairah!5e0!3m2!1sen!2sae!4v1650000000000!5m2!1sen!2sae" width="100%" height="100%" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="opacity-90 pointer-events-none"></iframe>
+                    <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="bg-deepNavy/80 text-white text-[10px] tracking-widest px-3 py-1.5 rounded-full backdrop-blur-sm">اضغط لفتح الخريطة</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <button onclick="openLocationMap()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-deepNavy text-white text-xs tracking-widest shadow-sm hover:bg-navyDark transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        فتح الموقع في خرائط جوجل
+                    </button>
+
+                    <button onclick="addToCalendar()" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-silverBlue bg-white/80 text-xs tracking-widest text-deepNavy hover:bg-white shadow-sm transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        إضافة إلى التقويم
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- القسم السادس: اللباس الرسمي (DRESS CODE) -->
+        <section class="py-16 px-6 text-center unified-bg">
+            <h3 class="font-serif-custom text-2xl md:text-3xl tracking-wider text-deepNavy mb-2">اللباس الرسمي</h3>
+            <div class="flex justify-center mb-6">
+                <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
+            </div>
+
+            <p class="font-serif-custom text-lg md:text-xl text-deepNavy font-medium tracking-wide mb-8">
+                بدلات رسمية <span class="mx-2 text-silverBlue">|</span> فساتين سهرة
+            </p>
+
+            <p class="font-serif-custom text-base italic text-deepNavy/80 max-w-xs mx-auto leading-relaxed mb-6">
+                حرصاً على إحياء حفل أنيق وخاص، نعتذر عن استقبال الأطفال (الحفل مخصص للكبار فقط). شكراً لتفهمكم.
+            </p>
+
+            <div class="pt-4">
+                <p class="font-script text-2xl text-deepNavy">مع خالص الحب،</p>
+            </div>
+        </section>
+
+        <!-- القسم السابع: تأكيد الحضور (RSVP) -->
+        <section class="py-16 px-8 text-center unified-bg">
+            <h3 class="font-serif-custom text-2xl tracking-wider text-deepNavy mb-2">هل ستشاركوننا الفرحة؟</h3>
+            <div class="flex justify-center mb-6">
+                <img src="assets/floral_divider.png" alt="فاصل" class="w-40 h-auto object-contain opacity-85">
+            </div>
+
+            <p class="text-xs tracking-widest text-softGrey mb-8">نرجو تأكيد الحضور قبل تاريخ ١٠ نوفمبر ٢٠٢٦.</p>
+
+            <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4 max-w-xs mx-auto text-right">
+                <div>
+                    <label for="guestName" class="block text-[10px] tracking-widest text-softGrey mb-1">الاسم الكامل</label>
+                    <input type="text" id="guestName" required class="w-full bg-transparent border-b border-silverBlue py-2 text-sm text-deepNavy focus:outline-none focus:border-deepNavy text-right">
+                </div>
+
+                <!-- خانة تحديد عدد الضيوف -->
+                <div>
+                    <label for="guestCount" class="block text-[10px] tracking-widest text-softGrey mb-1">عدد الضيوف</label>
+                    <input type="number" id="guestCount" value="1" min="1" max="10" required class="w-full bg-transparent border-b border-silverBlue py-2 text-sm text-deepNavy focus:outline-none focus:border-deepNavy text-right">
+                </div>
+
+                <div class="pt-4 space-y-3">
+                    <button type="button" onclick="setAttendance('Joyfully Accepts')" id="btnAccept" class="w-full py-3 rounded-full border border-silverBlue text-xs tracking-[0.1em] text-deepNavy bg-white/50 hover:bg-mist/30 transition">يسعدني الحضور</button>
+                    <button type="button" onclick="setAttendance('Regretfully Declines')" id="btnDecline" class="w-full py-3 rounded-full border border-silverBlue text-xs tracking-[0.1em] text-deepNavy bg-white/50 hover:bg-mist/30 transition">نعتذر عن عدم الحضور</button>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" class="w-full py-3.5 rounded-full bg-deepNavy text-white text-xs tracking-[0.1em] shadow-md hover:bg-navyDark transition">إرسال الرد</button>
+                </div>
+            </form>
+            <div id="rsvpSuccess" class="hidden pt-4 text-sm font-serif-custom italic text-deepNavy">
+                شكراً لتأكيد حضوركم! نتطلع لرؤيتكم والاحتفال معاً.
+            </div>
+        </section>
+
+        <!-- القسم الثامن: التذييل (FOOTER) -->
+        <section class="relative pt-12 pb-0 text-center overflow-hidden">
+            <div class="w-full leading-none relative">
+                <img src="assets/footer_swan.png" alt="تذييل الصفحة" class="w-full h-auto object-cover block opacity-95" loading="lazy">
+                <div class="absolute bottom-6 left-0 right-0 z-10 px-4 text-center">
+                    <h4 class="font-serif-custom text-2xl md:text-3xl italic text-deepNavy drop-shadow-sm mb-1">أحمد & سمية</h4>
+                    <p class="text-[10px] tracking-[0.2em] text-deepNavy/80 drop-shadow-sm font-medium">حكايتنا الأبدية تبدأ من هنا.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- الجافاسكريبت -->
+    <script>
+        const openingVideo = document.getElementById('openingVideo');
+        let isVideoReady = false;
+
+        if (openingVideo) {
+            openingVideo.preload = "auto";
+            openingVideo.load();
+            
+            openingVideo.addEventListener('canplaythrough', () => {
+                isVideoReady = true;
+            });
+        }
+
+        let hasStarted = false;
+        function startInvitation() {
+            if (hasStarted) return;
+            hasStarted = true;
+
+            const envelopeContainer = document.getElementById('envelopeContainer');
+            const bgAudio = document.getElementById('bgAudio');
+
+            if (bgAudio) {
+                bgAudio.play().then(() => {
+                    isPlaying = true;
+                    const icon = document.getElementById('audioIcon');
+                    if(icon) {
+                        icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />`;
+                    }
+                }).catch(e => console.log("Audio play prevented:", e));
+            }
+
+            if (openingVideo) {
+                openingVideo.muted = true;
+                
+                const playPromise = openingVideo.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        if (envelopeContainer) {
+                            envelopeContainer.style.opacity = '0';
+                            setTimeout(() => {
+                                envelopeContainer.style.display = 'none';
+                            }, 300);
+                        }
+                    }).catch(e => {
+                        console.log("Video autoplay prevented or failed:", e);
+                        closeIntro();
+                    });
+                }
+
+                openingVideo.onended = () => {
+                    closeIntro();
+                };
+            } else {
+                closeIntro();
+            }
+        }
+
+        function closeIntro() {
+            const introScreen = document.getElementById('introScreen');
+            if (introScreen) {
+                introScreen.style.opacity = '0';
+                setTimeout(() => {
+                    introScreen.style.visibility = 'hidden';
+                }, 800);
+            }
+        }
+
+        let isPlaying = false;
+        function toggleAudio() {
+            const audio = document.getElementById('bgAudio');
+            const icon = document.getElementById('audioIcon');
+            if (!audio || !icon) return;
+
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />`;
+            } else {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />`;
+                }).catch(e => console.log("Audio play prevented:", e));
+            }
+        }
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const section = document.getElementById('scheduleSection');
+                    const path = document.getElementById('zigzagPath');
+                    const pearl = document.getElementById('movingPearl');
+                    
+                    if (section && path && pearl && typeof path.getTotalLength === 'function') {
+                        const rect = section.getBoundingClientRect();
+                        const windowHeight = window.innerHeight;
+                        const totalScrollable = rect.height;
+                        const currentScroll = windowHeight - rect.top;
+                        
+                        let scrollProgress = currentScroll / (windowHeight + totalScrollable);
+                        scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+
+                        const pathLength = path.getTotalLength();
+                        const point = path.getPointAtLength(scrollProgress * pathLength);
+
+                        const pearlWidth = 28;
+                        const pearlHeight = 28;
+                        pearl.setAttribute('x', point.x - (pearlWidth / 2));
+                        pearl.setAttribute('y', point.y - (pearlHeight / 2));
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        const weddingDate = new Date("November 18, 2026 20:00:00").getTime();
+        function updateCountdown() {
+            const now = Date.now();
+            const distance = weddingDate - now;
+
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+
+            if (distance > 0) {
+                if (daysEl) daysEl.innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                if (hoursEl) hoursEl.innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                if (minutesEl) minutesEl.innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                if (secondsEl) secondsEl.innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+            } else {
+                if (daysEl) daysEl.innerText = "00";
+                if (hoursEl) hoursEl.innerText = "00";
+                if (minutesEl) minutesEl.innerText = "00";
+                if (secondsEl) secondsEl.innerText = "00";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        let selectedAttendance = '';
+        function setAttendance(status) {
+            selectedAttendance = status;
+            const btnAccept = document.getElementById('btnAccept');
+            const btnDecline = document.getElementById('btnDecline');
+            if (!btnAccept || !btnDecline) return;
+            
+            if (status === 'Joyfully Accepts') {
+                btnAccept.classList.add('bg-deepNavy', 'text-white');
+                btnAccept.classList.remove('bg-white/50');
+                btnDecline.classList.remove('bg-deepNavy', 'text-white');
+                btnDecline.classList.add('bg-white/50');
+            } else {
+                btnDecline.classList.add('bg-deepNavy', 'text-white');
+                btnDecline.classList.remove('bg-white/50');
+                btnAccept.classList.remove('bg-deepNavy', 'text-white');
+                btnAccept.classList.add('bg-white/50');
+            }
+        }
+
+        function handleRSVP(e) {
+            e.preventDefault();
+            if (!selectedAttendance) {
+                alert('يرجى اختيار ما إذا كنت ستسعدنا بالحضور أو تعتذر.');
+                return;
+            }
+            
+            const guestName = document.getElementById('guestName').value.trim();
+            const guestCount = document.getElementById('guestCount').value;
+            
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz0y1_CYFPKnFEJ_g2xuXafrLiZPX2exbPwkr-EOU4gXjnIR_aAKhbW28SKiuhxupIE/exec';
+            
+            const requestData = {
+                guestName: guestName,
+                guestCount: guestCount,
+                attendance: selectedAttendance
+            };
+
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerText = 'جارٍ الإرسال...';
+            }
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8',
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(() => {
+                const form = document.getElementById('rsvpForm');
+                const successMsg = document.getElementById('rsvpSuccess');
+                if (form) form.style.display = 'none';
+                if (successMsg) successMsg.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('خطأ!', error);
+                alert('حدث خطأ أثناء إرسال البيانات، يرجى المحاولة مرة أخرى.');
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerText = 'إرسال الرد';
+                }
+            });
+        }
+
+        function openLocationMap() {
+            window.open('https://share.google/xAnBRkkXa6p0EjaXY', '_blank', 'noopener,noreferrer');
+        }
+
+        function addToCalendar() {
+            const title = encodeURIComponent("حفل زفاف أحمد وسمية");
+            const details = encodeURIComponent("يسعدنا حضوركم ومشاركتنا حفل زفافنا في قاعة محمد بن زايد.");
+            const location = encodeURIComponent("قاعة محمد بن زايد");
+            const dates = "20261118T200000Z/20261118T230000Z";
+            
+            const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+            window.open(gCalUrl, '_blank', 'noopener,noreferrer');
+        }
+    </script>
+</body>
+</html>
